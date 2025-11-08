@@ -66,3 +66,30 @@ function createEmployee(salary: number | string): Director | Teacher {
   // Otherwise (salary >= 500 or is a string), return a Director
   return new Director();
 }
+
+
+
+
+function isDirector(employee: Director | Teacher): employee is Director {
+  return employee instanceof Director;
+}
+
+
+/**
+ * Executes the appropriate work task based on the employee's role.
+ *
+/**
+ * Executes the appropriate work task based on the employee's role.
+ *
+ * @param employee The employee (Director or Teacher).
+ * @returns The string output of the relevant task function.
+ */
+function executeWork(employee: Director | Teacher): string {
+  if (isDirector(employee)) {
+    // TypeScript knows inside this block that 'employee' is a Director
+    return employee.workDirectorTasks();
+  } else {
+    // TypeScript knows in this 'else' block that 'employee' must be a Teacher
+    return employee.workTeacherTasks();
+  }
+}
