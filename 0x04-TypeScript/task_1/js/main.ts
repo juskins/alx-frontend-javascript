@@ -22,10 +22,6 @@ function printTeacher(firstName: string, lastName: string): string {
 }
 
 
-/**
- * 1. Interface describing the shape of the StudentClass instance.
- *    This defines the methods and properties instances will have.
- */
 interface StudentInterface {
   firstName: string;
   lastName: string;
