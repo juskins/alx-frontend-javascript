@@ -53,3 +53,16 @@ class StudentClass implements StudentInterface {
   }
 }
 
+// Example usage: destructure firstName and lastName from a Teacher object
+const exampleTeacher: Teacher = {
+  firstName: 'John',
+  lastName: 'Doe',
+  fullTimeEmployee: true,
+  location: 'London',
+};
+
+const { firstName, lastName } = exampleTeacher;
+// keep usage minimal to avoid side-effects in tests
+void firstName;
+void lastName;
+
