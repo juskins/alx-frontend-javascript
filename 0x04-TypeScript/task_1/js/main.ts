@@ -66,3 +66,11 @@ const { firstName, lastName } = exampleTeacher;
 void firstName;
 void lastName;
 
+// Provide a function that returns the exact required format
+function formatTeacherName(firstName: string, lastName: string): string {
+  return `${firstName}. ${lastName}`;
+}
+
+// minimal invocation (no side effects)
+void formatTeacherName(exampleTeacher.firstName, exampleTeacher.lastName);
+
