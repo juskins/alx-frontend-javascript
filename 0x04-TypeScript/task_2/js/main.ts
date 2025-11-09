@@ -70,26 +70,36 @@ function createEmployee(salary: number | string): Director | Teacher {
 
 
 
-function isDirector(employee: Director | Teacher): employee is Director {
-  return employee instanceof Director;
+/**
+ * Type predicate function to determine if an employee is a Director.
+ * This function asserts to TypeScript that if it returns true, the type of the employee 
+ * within that scope is specifically 'DirectorInterface'.
+ * 
+ * @param employee The employee object to check (can be a Director or Teacher).
+ * @returns True if the employee can perform director tasks, otherwise False.
+ */
+function isDirector(employee: DirectorInterface | TeacherInterface): employee is DirectorInterface {
+  // We can check if the 'workDirectorTasks' method exists on the employee object.
+  return (employee as DirectorInterface).workDirectorTasks !== undefined;
+
+  // Alternatively, if you are using the concrete classes:
+  // return employee instanceof Director; 
 }
 
 
 /**
- * Executes the appropriate work task based on the employee's role.
- *
-/**
- * Executes the appropriate work task based on the employee's role.
- *
+ * Executes the appropriate work task based on the employee's role,
+ * leveraging the type predicate for type safety.
+ * 
  * @param employee The employee (Director or Teacher).
  * @returns The string output of the relevant task function.
  */
-function executeWork(employee: Director | Teacher): string {
+function executeWork(employee: DirectorInterface | TeacherInterface): string {
   if (isDirector(employee)) {
-    // TypeScript knows inside this block that 'employee' is a Director
+    // TypeScript knows inside this block that 'employee' has the Director methods
     return employee.workDirectorTasks();
   } else {
-    // TypeScript knows in this 'else' block that 'employee' must be a Teacher
+    // TypeScript knows in this 'else' block that 'employee' must have the Teacher methods
     return employee.workTeacherTasks();
   }
 }
